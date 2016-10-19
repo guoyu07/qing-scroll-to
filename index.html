@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>QingScrollTo</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style type="text/css">
+        html, body {
+            background:#F9F9F9;
+            padding: 0;
+            margin: 0;
+            font: 14px/1.6 "Lucida Grande", "Helvetica", sans-serif;
+            color: #333;
+            overflow: hidden;
+        }
+        h1 {
+            color: rgb(113, 113, 113);
+            text-align: center;
+            margin: 0;
+            padding-top: 50px;
+        }
+        p {
+            text-align: center;
+        }
+        .controller {
+            position: fixed;
+            top: 50%;
+            right: 100px;
+        }
+        button {
+            margin: 20px;
+            cursor: pointer;
+            display: block;
+            background-color:#FA2;
+            border-radius:5px;
+            border:none;
+            font-size:16px;
+            font-weight:700;
+            height:32px;
+            padding:4px 16px;
+        }
+    </style>
+
+	<script type="text/javascript" src="node_modules/jquery/dist/jquery.js"></script>
+	<script type="text/javascript" src="node_modules/qing-module/dist/qing-module.js"></script>
+	<script type="text/javascript" src="dist/qing-scroll-to.js"></script>
+	<script type="text/javascript">
+        $(function() {
+            $('section').css({'height': $(window).height()})
+            $('#btn1').click(function(e){
+               new QingScrollTo({
+                   offset: $('body, html').scrollTop() - $(window).height()
+               })
+            });
+            $('#btn2').click(function(e){
+               new QingScrollTo({
+                   offset: $('body, html').scrollTop() + $(window).height()
+               });
+            });
+            $('#btn3').on('click', function(e) {
+                new QingScrollTo({
+                    el: "#hello"
+                });
+            });
+        });
+	</script>
+</head>
+
+<body>
+    <div class="controller">
+        <button id="btn1">Scroll up!</button>
+        <button id="btn2">Scroll down!</button>
+        <button id="btn3">Scroll to an element!</button>
+    </div>
+    <section>
+        <h1>Qing ScrollTo</h1>
+        <p>
+            Click buttons right to scroll!
+        </p>
+    </section>
+    <section style="background: #27ae60;"></section>
+    <section style="background: #2980b9;">
+        <h1 id="hello" style="color:white;">Hello!</h1>
+    </section>
+    <section style="background: #8e44ad;"></section>
+    <section style="background: #2c3e50;"></section>
+</body>
+</html>
