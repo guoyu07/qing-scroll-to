@@ -6,7 +6,7 @@
  * Released under the MIT license
  * http://mycolorway.github.io/qing-scroll-to/license.html
  *
- * Date: 2016-10-19
+ * Date: 2016-11-23
  */
 ;(function(root, factory) {
   if (typeof module === 'object' && module.exports) {
@@ -64,7 +64,7 @@ QingScrollTo = (function(superClass) {
   };
 
   QingScrollTo.prototype._calculateOffset = function() {
-    var containerLeft, containerTop, ref, targetOffset;
+    var containerOffset, targetOffset;
     if (typeof this.opts.offset === 'object') {
       this.offset = $.extend({}, this.opts.offset);
     } else {
@@ -78,9 +78,9 @@ QingScrollTo = (function(superClass) {
     }
     targetOffset = this.el.offset();
     if (this.opts.container) {
-      ref = this.container.offset(), containerTop = ref.containerTop, containerLeft = ref.containerLeft;
-      targetOffset.top -= containerTop + this.container.scrollTop();
-      targetOffset.left -= containerLeft + this.container.scrollLeft();
+      containerOffset = this.container.offset();
+      targetOffset.top -= containerOffset.top + this.container.scrollTop();
+      targetOffset.left -= containerOffset.left + this.container.scrollLeft();
     }
     return this.offset = {
       y: targetOffset.top - this.offset.y,

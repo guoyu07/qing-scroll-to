@@ -41,9 +41,9 @@ class QingScrollTo extends QingModule
     targetOffset = @el.offset()
 
     if @opts.container
-      { containerTop, containerLeft } = @container.offset()
-      targetOffset.top -= containerTop + @container.scrollTop()
-      targetOffset.left -= containerLeft + @container.scrollLeft()
+      containerOffset = @container.offset()
+      targetOffset.top -= containerOffset.top + @container.scrollTop()
+      targetOffset.left -= containerOffset.left + @container.scrollLeft()
 
     @offset =
       y: targetOffset.top - @offset.y
