@@ -42,8 +42,12 @@ class QingScrollTo extends QingModule
 
     if @opts.container
       containerOffset = @container.offset()
-      targetOffset.top -= containerOffset.top + @container.scrollTop()
-      targetOffset.left -= containerOffset.left + @container.scrollLeft()
+      targetOffset.top = Math.abs(
+        targetOffset.top - containerOffset.top + @container.scrollTop()
+      )
+      targetOffset.left = Math.abs(
+        targetOffset.left - containerOffset.left + @container.scrollLeft()
+      )
 
     @offset =
       y: targetOffset.top - @offset.y
